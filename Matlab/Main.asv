@@ -1,0 +1,11 @@
+%% MECH2420 Report
+% Script for analysing and plotting our data
+D = importdata('Data\Diffraction_Data_6061.txt','\t',1); % read tab delimited data with 1 header line
+6061-ClipGuage = D.data(:,1); % extract the first column into the array Col1
+6061-ForceApplied = D.data(:,2); % extract the second column into the array Col2
+E = importdata('Data\Diffraction_Data_7075.txt','\t',1); % read tab delimited data with 1 header line
+7075_ClipGuage = E.data(:,1); % extract the first column into the array Col1
+7075_ForceApplied = E.data(:,2); % extract the second column into the array Col2
+
+%plot our data
+plot(Col1,Col2);
