@@ -1,17 +1,23 @@
-function PlotSvS(Data1,Data2)
+function PlotSvS(Data1,Data2, Data3,Data4)
 %% Plotting our data
 %plot our data
-figure('Name','Stress Vs Strain Graph','NumberTitle','off', 'Toolbar','none');
+tempFig = figure('Name','Stress Vs Strain Graph','NumberTitle','off', 'Toolbar','none');
 plot(Data1,Data2);
 hold all
-title('Stress Vs Strain Graph');
-axis([0 0.052 0 2*10^-3])
+if Data4 == 1
+    axis([0 0.052 0 3.35*10^5])
+    title('6061: Stress Vs Strain Graph');
+    else
+    axis([0 0.052 0 6*10^5])
+    title('7075: Stress Vs Strain Graph');
+end
+%axis([0 0.052 0 0.052]) %Debug
 xlabel('Stress (%)');
 ylabel('Strain (MPa)');
 
 %% Reading Youngs Mod
 % We use the Data Cursor to read off our stress/strain graph
-YoungMod = 0.001506/0.00439; %0.001506/0.00439 %0.00439/0.001506
+YoungMod = Data3; %0.001506/0.00439 %0.00439/0.001506
 
 
 %% Reading & Plotting the Intersection
@@ -20,7 +26,7 @@ YoungMod = 0.001506/0.00439; %0.001506/0.00439 %0.00439/0.001506
 % intersections.
 
 % Plot Proportional Limit and Modulus line
-A = linspace(0,0.006,100); 
+A = linspace(0,0.4,200); 
 B = A.*(YoungMod);
 
 % Plot 0.02% Yield line
@@ -35,6 +41,10 @@ F = A.*(YoungMod);
 [x_int,y_int] = intersections(C,D,Data1,Data2,1);
 [x_int2,y_int2] = intersections(A,B,Data1,Data2,1); %This is for reading off the first point. 
 [x_int3,y_int3] = intersections(E,F,Data1,Data2,1); %This is for reading off the first point. 
+hold on
+% line(C,D)
+% line(A,B)
+% line(E,F)
 plot(x_int(end),y_int(end), 'k*');
 plot(x_int2(end),y_int2(end), 'k*');
 plot(x_int3(end),y_int3(end), 'k*');
@@ -45,19 +55,41 @@ plot(E,F,'b'); %Blue is Under Load
 YieldStrength_2Percent = [x_int y_int];
 YieldStrength_Load = [x_int3 y_int3];
 %str1 = '\leftarrow 2% Yield @' num2str(x_int)  ','  num2str(y_int);
-str1 = sprintf('2%% Yield \n@ [%0.2d , %0.2d]', x_int,y_int);
-str2 = sprintf('Proportional Limit \n & modulus \n@ [%0.2d , %0.2d]', x_int2(end),y_int2(end));
-str3 = sprintf('Yield Strength 0.5%% \n Extention Under Load \n@ [%0.2d , %0.2d]', x_int3,y_int3);
-Text_X = 0.0502319971911861*0.65
-Base_Y = 0.00157664491666667*1.65
-Text_Y1 = Base_Y*0.7
-Text_Y2 = Base_Y*0.5
-Text_Y3 = Base_Y*0.3
-t1 = text(Text_X,Text_Y1, str1,'Color', 'red');
-%t1.color = 'red'
-t2 = text(Text_X,Text_Y2,str2,'Color', 'green');
+str1 = sprintf('Proportional Limit \n & modulus \n@ [%0.4f , %0.2f]', x_int2(end),y_int2(end));
+str2 = sprintf('2%% Yield \n@ [%0.4f , %0.2f]', x_int,y_int);
+str3 = sprintf('Yield Strength 0.5%% \n Extention Under Load \n@ [%0.4f , %0.2f]', x_int3,y_int3);
+
+str4 = sprintf('Youngs Modulus \n %3.2f GPa', Data3*10^-6);
+
+Text_X = 0.0327
+Base_Y = 260139
+
+if Data4 == 1
+    Text_Y1 = Base_Y*0.7
+    Text_Y2 = Base_Y*0.5
+    Text_Y3 = Base_Y*0.3
+else
+    Text_Y1 = Base_Y*0.7*2
+    Text_Y2 = Base_Y*0.5*2
+    Text_Y3 = Base_Y*0.3*2
+end
+
+t2 = text(Text_X,Text_Y1,str1,'Color', 'green');
+t1 = text(Text_X,Text_Y2, str2,'Color', 'red');
 t3 = text(Text_X,Text_Y3,str3,'Color', 'blue');
 
-% text(x_int*1.2,y_int*1.05,str1);
-% text(x_int2(end),y_int2(end)*0.9,str2);
-% text(x_int3*1.2,y_int3*1.05,str3);
+t4 = text(Text_X*0.5,Text_Y1,str4,'Color','green')
+
+
+%% Let's Save the figures
+% We save the images using the saveas function
+
+if Data4 == 1
+    saveas(tempFig,'Output\6061_Figure','bmp');
+    saveas(tempFig,'Output\6061_Figure','jpg');
+else
+    saveas(tempFig,'Output\7075_Figure','bmp');
+    saveas(tempFig,'Output\7075_Figure','jpg');
+end
+
+

@@ -10,10 +10,10 @@ ForceApplied_7075 = E.data(:,2); % extract the second column into the array Col2
 %% Converting to Standard Units
 % We want to convert to our standard units Metres and Newtons. This helps
 % avoid mm^2 * 10^-3 conversions, which are linear but confusing.
-ForceApplied_6061 = ForceApplied_6061;%.*10^3;    % Here we take kN to N
-ForceApplied_7075 = ForceApplied_7075;%.*10^3;
-ClipGuage_6061 =    ClipGuage_6061;%.*10^-3;      % Here we take mm to m
-ClipGuage_7075 =    ClipGuage_7075;%.*10^-3;
+ForceApplied_6061 = ForceApplied_6061.*10^3;    % Here we take kN to N
+ForceApplied_7075 = ForceApplied_7075.*10^3;
+ClipGuage_6061 =    ClipGuage_6061.*10^-3;      % Here we take mm to m
+ClipGuage_7075 =    ClipGuage_7075.*10^-3;
 %% Infomations about samples
 % Here's the sample infomation
 
@@ -21,14 +21,14 @@ ClipGuage_7075 =    ClipGuage_7075;%.*10^-3;
 % Dimensions
 % 40mm x 44.45mm x 300mm
 volume_6061 = 40*44.45*300;
-%Area_6061 = (5)*(12.5);
-Area_6061 = (5*10^-3)*(12.5*10^-3);
+%Area_6061 = (40)*(300);
 
+Area_6061 = (5*10^-3)*(180*10^-3);
 %% 7075
 % Dimensions
 % 40mm x 38.1mm x 300mm
 volume_7075 = 40*38.1*300;
-Area_7075 = (5*10^-3)*(12.5*10^-3)
+Area_7075 = (40)*300;
 
 %% Equipment Specs
 % Sigma = Force/Area
@@ -49,8 +49,8 @@ epsilon_7075 = (ClipGuage_7075-ClipGuage_7075(1))/ClipGuage_7075(1);
 
 %% Reading Youngs Mod
 % We use the Data Cursor to read off our stress/strain graph
-YoungMod_6061 = 2.7522e+05/0.0038;%0.001506/0.00439; %0.001506/0.00439 %0.00439/0.001506
-YoungMod_7075 = 4.909e+05/0.007079;%2.72/0.007781;%0.002768/0.008235; 
+YoungMod_6061 = 1.5/0.004256;%0.001506/0.00439; %0.001506/0.00439 %0.00439/0.001506
+YoungMod_7075 = 2.72/0.007781;%0.002768/0.008235; 
 
  
 %% Plotting our data
