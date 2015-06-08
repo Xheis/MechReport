@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!-- saved from url=(0231)http://www.wolframalpha.com/widget/input/?input=Miller%20Indices%20for%20%5B%2F%2Fnumber%3A3%2F%2F%5D%20%5B%2F%2Fnumber%3A1%2F%2F%5D%20%5B%2F%2Fnumber%3A1%2F%2F%5D&id=cc011df99e5873930ccb659743a221b&showAssumptions=1&showWarnings=1 -->
+<html id="widgetResults"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Wolfram|Alpha Results</title><!--<link rel="Shortcut Icon" href="//wolframcdn.com/alphaFav.ico" /><link rel="icon" href="//wolframcdn.com/alphaFav.png" type="image/png" />--><link rel="stylesheet" type="text/css" href="widgetResults.css"><!--[if IE 7]><link rel="stylesheet" type="text/css" href="/css/widgetResultsIE7.css" /><![endif]--><!--[if IE 6]><style type="text/css">a.source { font-size:10px;font-family: Verdana,Arial;text-decoration: none !important; } </style><![endif]--><link rel="stylesheet" type="text/css" href="widgetResultsSplat.css"><style type="text/css"></style></head><body class=""><div id="content"><div id="pod_0100" class="pod "><hr class="top"><h2>
+      Input information<span class="colon">:</span></h2><div id="subpod_0100_1" class="sub "><div class="output pnt" id="scannerresult_0100_1"><img height="132." width="278." src="MSP7741ec6hfb35aeb184c0000526a31cb9da7b0a9" id="i_0100_1" alt="Miller indices for a simple cubic lattice |  \nh | 3\nk | 1\nl | 1" title="Miller indices for a simple cubic lattice |  ..." data-attribution=""></div><div class="annotpod">
+	</div></div>
+<hr class="bot"></div><div id="pod_0200" class="pod "><hr class="top"><h2>
+      Corresponding lattice planes<span class="colon">:</span></h2><div id="subpod_0200_1" class="sub "><div class="output pnt" id="scannerresult_0200_1"><img height="199." width="200." src="MSP7781ec6hfb35aeb184c00000gffc5b412d5ed0d" id="i_0200_1" alt="" title="" data-attribution=""></div><div class="annotpod">
+	</div></div>
+<hr class="bot"></div><div id="pod_0300" class="pod "><hr class="top"><h2>
+      Additional information<span class="colon">:</span></h2><div id="subpod_0300_1" class="sub "><div class="output pnt" id="scannerresult_0300_1"><img height="159." width="237." src="MSP7821ec6hfb35aeb184c0000140i0210g91abg2a" id="i_0300_1" alt="x-intercept | 1\/3\ny-intercept | 1\nz-intercept | 1\nadjacent plane spacing | 1\/sqrt(11)" title="x-intercept | 1/3..." data-attribution=""></div><div class="annotpod">
+	</div></div>
+<hr class="bot"></div></div><script type="text/javascript" src="jquery.min.js"></script><script type="text/javascript" src="widgets.js"></script><!--[if IE]><script type="text/javascript" src="widgets-ie.js"></script><![endif]--><script type="text/javascript">
+    document.domain = "wolframalpha.com";
+    var context = window;
+    var jsonArray = {"popups":{}, "imgs":{}};
+    var server = 'http://www4c.wolframalpha.com';
+    var escapedInput = encodeURIComponent("Miller Indices for [//number:3//] [//number:1//] [//number:1//]");
+    var popupCSS = "/Calculate/css/popup.layout.css";
+
+    var type = "";
+
+//Assumption handler
+function applyAssumption(trackingnumber, assumption) {
+    document.getElementById('a' + trackingnumber).value = unescape(assumption);
+    
+    assumptionSubmit();
+}
+
+function assumptionSubmit() {
+    var assumptions = $("#calculateAssum").serialize();
+    assumptions = assumptions.replace(/a=/g, "assumption=");
+    assumptions = assumptions.replace(/f=/g, "assumption=");
+    
+    var url = window.location.href;
+    url = url.replace(/assumption=.*?(&|$)/g, "");
+    
+    if (url.lastIndexOf("#") == (url.length - 1)) {
+        url = url.substring(0, url.length - 1);
+    }
+    
+    $("#calculateAssum")
+        .attr("action", url + "&" + assumptions)
+        .unbind()
+        .submit();
+}
+
+$(document).ready(function() {
+    $("#calculateAssum", document).submit(function(){assumptionSubmit();});
+    
+    $("#calculateAssum input", document)
+        .filter("[name^='f']")
+        .focus(function(e) {
+            $("#equal"+this.name.substring(1)).css("left","auto");
+            $("[id^='equal']").filter("[id!='equal"+this.name.substring(1)+"']").css("left","-10000px");
+            $("#calculateAssum .warn").html("");
+        })
+        .keyup(function(e) {
+            $("#"+this.name).val("*F."+this.alt+"-_"+this.value);
+            if (e.which == 13) { $("#calculateAssum").submit(); }
+        });
+        
+    $("#calculateAssum input",document)
+        .filter("[id='equal']")
+        .focus(function() { $(this).show(); });
+    $('body',document).click(function(e) {
+            if( $(e.target).is("a[id^=substitute_]") & e.target.id != "mathsource"){
+                if($(e.target).text() == 'Play notes' | $(e.target).text() == 'Play chord' | $(e.target).text() == 'Play sound') {
+                    e.preventDefault();
+                    playSound($(e.target));
+                    return;
+                }
+            var podID = $(e.target).closest('.sub,.pod').attr('id');
+            var podNumber = podID.indexOf('sub')==-1 ? podID.substring(4):podID.substring(7);
+            var index = $(e.target).parents('.pod').find('a').index(e.target);
+            var url = $(e.target).attr('href');
+
+            e.preventDefault();
+            asynchronousPod(url, podID, escapedInput,0,0);
+        } else if( $(e.target).is(".h .menu > li a") ){
+            var podID = $(e.target).closest('.sub,.pod').attr('id');
+            var podNumber = podID.indexOf('sub')==-1 ? podID.substring(4):podID.substring(7);
+            var index = $(e.target).closest('.pod').find('a').index(e.target);
+      
+            changeSelection(index);
+            e.preventDefault();
+            var url = $(e.target).attr('href');
+            asynchronousPod(url, podID, escapedInput,0,0);
+        } 
+    });
+    $('body',document).change(function(e) {
+        if( $(e.target).is("select[id^=substituteValue_]")){
+            var podID = $(e.target).closest('.sub,.pod').attr('id');
+            var podNumber = podID.indexOf('sub')==-1 ? podID.substring(4):podID.substring(7);
+            var selectedIndex = $(e.target)[0].selectedIndex;
+            var url = $(e.target)[0][selectedIndex].value;
+            asynchronousPod(url, podID, escapedInput, 0, 0);
+        }
+    });
+
+  
+
+});
+</script><script type="text/javascript"></script><script type="text/javascript">
+  $('li:contains("Step‐by‐step")').remove();
+</script>
+</body></html>

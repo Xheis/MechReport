@@ -1,0 +1,145 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Residual Strain Measurements</title><meta name="generator" content="MATLAB 8.4"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-06-07"><meta name="DC.source" content="ResStrain_Grapher.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Residual Strain Measurements</h1><!--introduction--><p>We will record and graph the residual strain found in the 2 alumnium samples</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Neutron Wavelength</a></li><li><a href="#2">Gauge Volume</a></li><li><a href="#3">Reference D Spacings</a></li><li><a href="#4">Method</a></li><li><a href="#6">Miller Spacing</a></li><li><a href="#7">Import Data</a></li></ul></div><h2>Neutron Wavelength<a name="1"></a></h2><p>Neutron = 1.73 Angstroms, or 1.73 * 10^-10 metres</p><pre class="codeinput">NetronWL = 1.73;
+NetronWL_std = 1.73*10^-10;
+</pre><h2>Gauge Volume<a name="2"></a></h2><p>Gauge volume was contant at</p><pre class="codeinput">GaugeVolume = 2*2*20; <span class="comment">%mm</span>
+</pre><h2>Reference D Spacings<a name="3"></a></h2><p>Measurement in Angstroms (*10^-10)</p><pre class="codeinput">Reference_D_Spacing_6061    =   1.2181161; <span class="comment">%plus or minus uncertainity</span>
+Reference_uncertainity_6061 =   8*10^-6;
+Reference_D_Spacing_7075    =   1.2188861; <span class="comment">%plus or minus uncertainity</span>
+Reference_uncertainity_7075 =   5*10^-6;
+</pre><h2>Method<a name="4"></a></h2><p>Calculate the Residue stress. We can use the formula</p><p><img src="ResStrain_Grapher_eq05072336847375297987.png" alt="$$TOTAL STRESS = RESIDUAL STRESS + APPLIED STRESS$$"></p><h2>Miller Spacing<a name="6"></a></h2><p>311 Latice planes, aka,</p><pre class="codeinput">x_int = 1/3;
+y_int = 1;
+z_int = 1;
+Lattice_spacing = 1/(11^-0.5);
+</pre><h2>Import Data<a name="7"></a></h2><p>Importing data using the importdata command</p><pre class="codeinput">D = importdata(<span class="string">'Data\Diffraction_Data_6061.txt'</span>,<span class="string">'\t'</span>,1); <span class="comment">% read tab delimited data with 1 header line</span>
+ymm_6061 = D.data(:,1); <span class="comment">% extract the first column into the array Col1</span>
+Axial_D_spacing_6061 = D.data(:,2); <span class="comment">% extract the second column into the array Col2</span>
+Axial_error_6061 = D.data(:,3);
+Transverse_D_spacing_6061 = D.data(:,4);
+Transverse_error_6061 = D.data(:,5);
+
+E = importdata(<span class="string">'Data\Diffraction_Data_7075.txt'</span>,<span class="string">'\t'</span>,1); <span class="comment">% read tab delimited data with 1 header line</span>
+ymm_7075 = E.data(:,1); <span class="comment">% extract the first column into the array Col1</span>
+Axial_D_spacing_7075 = E.data(:,2); <span class="comment">% extract the second column into the array Col2</span>
+Axial_error_7075 = E.data(:,3);
+Transverse_D_spacing_7075 = E.data(:,4);
+Transverse_error_7075 = E.data(:,5);
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Residual Strain Measurements
+% We will record and graph the residual strain found in the 2 alumnium
+% samples
+
+%% Neutron Wavelength
+% Neutron = 1.73 Angstroms, or 1.73 * 10^-10 metres
+NetronWL = 1.73;
+NetronWL_std = 1.73*10^-10; 
+
+%% Gauge Volume
+% Gauge volume was contant at
+GaugeVolume = 2*2*20; %mm
+
+%% Reference D Spacings
+% Measurement in Angstroms (*10^-10)
+Reference_D_Spacing_6061    =   1.2181161; %plus or minus uncertainity 
+Reference_uncertainity_6061 =   8*10^-6;
+Reference_D_Spacing_7075    =   1.2188861; %plus or minus uncertainity 
+Reference_uncertainity_7075 =   5*10^-6;
+
+%% Method
+% Calculate the Residue stress. We can use the formula
+%%
+% 
+% $$TOTAL STRESS = RESIDUAL STRESS + APPLIED STRESS$$
+% 
+
+%% Miller Spacing
+% 311 Latice planes, aka, 
+x_int = 1/3;
+y_int = 1;  
+z_int = 1;
+Lattice_spacing = 1/(11^-0.5);
+%% Import Data
+% Importing data using the importdata command
+D = importdata('Data\Diffraction_Data_6061.txt','\t',1); % read tab delimited data with 1 header line
+ymm_6061 = D.data(:,1); % extract the first column into the array Col1
+Axial_D_spacing_6061 = D.data(:,2); % extract the second column into the array Col2
+Axial_error_6061 = D.data(:,3);
+Transverse_D_spacing_6061 = D.data(:,4);
+Transverse_error_6061 = D.data(:,5);
+
+E = importdata('Data\Diffraction_Data_7075.txt','\t',1); % read tab delimited data with 1 header line
+ymm_7075 = E.data(:,1); % extract the first column into the array Col1
+Axial_D_spacing_7075 = E.data(:,2); % extract the second column into the array Col2
+Axial_error_7075 = E.data(:,3);
+Transverse_D_spacing_7075 = E.data(:,4);
+Transverse_error_7075 = E.data(:,5);
+
+##### SOURCE END #####
+--></body></html>

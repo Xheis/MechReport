@@ -1,0 +1,20 @@
+table.WolframAlphaWidget.purpleWidgetTheme tr th,
+.WolframAlphaWidgetLarge.purpleWidgetTheme .waw_header,
+table.WolframAlphaWidget.purpleWidgetTheme .submit .m,
+.WolframAlphaWidgetLarge.purpleWidgetTheme .wolframAlphaWidgetContent .submit .m {
+  background-image: url(//www.wolframcdn.com/widget/purple_theme_vertical.png);
+}
+
+table.WolframAlphaWidget.purpleWidgetTheme tr th.l,
+.WolframAlphaWidgetLarge.purpleWidgetTheme .waw_header .l,
+table.WolframAlphaWidget.purpleWidgetTheme tr th.r,
+.WolframAlphaWidgetLarge.purpleWidgetTheme .waw_header .r,
+.WolframAlphaWidgetLarge.purpleWidgetTheme .waw_header.sm .close,
+table.WolframAlphaWidget.purpleWidgetTheme .bot .l,
+table.WolframAlphaWidget.purpleWidgetTheme .bot .r,
+table.WolframAlphaWidget.purpleWidgetTheme .submit .l,
+.WolframAlphaWidgetLarge.purpleWidgetTheme .wolframAlphaWidgetContent .submit .l,
+table.WolframAlphaWidget.purpleWidgetTheme .submit .r,
+.WolframAlphaWidgetLarge.purpleWidgetTheme .wolframAlphaWidgetContent .submit .r {
+  background-image: url(//www.wolframcdn.com/widget/purple_theme_crn.png);
+}
